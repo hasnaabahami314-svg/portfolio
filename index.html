@@ -4,1042 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bahami Hasnaa — Arabic Translator & AI Language Expert</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=DM+Sans&display=swap" rel="stylesheet"/>
+
   <style>
-    /* =========================================================
-       CSS VARIABLES — change accent color and fonts here
-    ========================================================= */
-    :root {
-      --bg:          #FAFAF8;
-      --surface:     #FFFFFF;
-      --border:      #E8E6E1;
-      --text:        #1A1A18;
-      --muted:       #7A7870;
-      --accent:      #B8854A;       /* ← main accent color */
-      --accent-lt:   #F5EDE0;
-      --font-head:   'Cormorant Garamond', Georgia, serif;
-      --font-body:   'DM Sans', sans-serif;
-      --max-w:       1100px;
-      --radius:      12px;
-      --shadow:      0 2px 20px rgba(0,0,0,.07);
-    }
-
-    /* =========================================================
-       RESET & BASE
-    ========================================================= */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
     body {
-      font-family: var(--font-body);
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
+      font-family: 'DM Sans', sans-serif;
+      background: #FAFAF8;
+      margin: 0;
+      color: #1A1A18;
     }
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
+    .container { width: 90%; max-width: 1000px; margin: auto; }
+    .section { padding: 80px 0; }
 
-    /* =========================================================
-       UTILITY
-    ========================================================= */
-    .container {
-      width: 92%;
-      max-width: var(--max-w);
-      margin-inline: auto;
-    }
-    .section { padding: 96px 0; }
-    .section-label {
-      font-family: var(--font-body);
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 300;
-      line-height: 1.15;
-      margin-bottom: 48px;
-      color: var(--text);
-    }
-    .section-title em {
-      font-style: italic;
-      color: var(--accent);
-    }
-    .divider {
-      width: 48px;
-      height: 2px;
-      background: var(--accent);
-      margin: 0 auto 64px;
-    }
-    .tag {
-      display: inline-block;
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .05em;
-      color: var(--accent);
-      background: var(--accent-lt);
-      border-radius: 999px;
-      padding: 4px 14px;
-    }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 36px 32px;
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(0,0,0,.11);
-    }
-
-    /* =========================================================
-       NAVIGATION
-    ========================================================= */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(250,250,248,.92);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
-      width: 92%;
-      max-width: var(--max-w);
-      margin-inline: auto;
-    }
-    .nav-logo {
-      font-family: var(--font-head);
-      font-size: 1.2rem;
-      font-weight: 600;
-      letter-spacing: .02em;
-    }
-    .nav-logo span { color: var(--accent); }
-    .nav-links {
-      display: flex;
-      gap: 32px;
-    }
-    .nav-links a {
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--accent); }
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -120px; right: -120px;
-      width: 520px; height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-lt) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
-      width: 92%;
-      max-width: var(--max-w);
-      margin-inline: auto;
-    }
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-    .hero-eyebrow::before {
-      content: '';
-      width: 32px; height: 1px;
-      background: var(--accent);
-    }
-    .hero-eyebrow span {
-      font-size: .75rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--accent);
-    }
-    .hero-name {
-      font-family: var(--font-head);
-      font-size: clamp(3rem, 6vw, 5.5rem);
-      font-weight: 300;
-      line-height: 1.05;
-      margin-bottom: 12px;
-    }
-    .hero-name strong {
-      font-weight: 600;
-      display: block;
-    }
-    .hero-title {
-      font-family: var(--font-head);
-      font-size: clamp(1rem, 2vw, 1.35rem);
-      font-style: italic;
-      color: var(--muted);
-      margin-bottom: 28px;
-      font-weight: 300;
-    }
-    .hero-intro {
-      font-size: .95rem;
-      color: var(--muted);
-      line-height: 1.8;
-      max-width: 460px;
-      margin-bottom: 40px;
-    }
-    .btn-row {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
+      padding: 14px 30px;
       border-radius: 999px;
-      font-family: var(--font-body);
-      font-size: .82rem;
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 14px;
       cursor: pointer;
-      transition: all .25s ease;
     }
     .btn-primary {
-      background: var(--accent);
-      color: #fff;
-      border: 2px solid var(--accent);
+      background: #B8854A;
+      color: white;
+      border: 2px solid #B8854A;
     }
     .btn-primary:hover {
       background: transparent;
-      color: var(--accent);
-    }
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
-      border: 2px solid var(--border);
-    }
-    .btn-outline:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .hero-monogram {
-      width: 320px; height: 320px;
-      border-radius: 50%;
-      background: var(--accent-lt);
-      border: 2px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      position: relative;
-    }
-    .hero-monogram::before {
-      content: '';
-      position: absolute;
-      inset: -12px;
-      border-radius: 50%;
-      border: 1px dashed var(--border);
-    }
-    .hero-monogram-initials {
-      font-family: var(--font-head);
-      font-size: 6rem;
-      font-weight: 300;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .hero-monogram-lang {
-      font-size: .7rem;
-      font-weight: 500;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .hero-stats {
-      display: flex;
-      gap: 32px;
-      margin-top: 48px;
-      padding-top: 32px;
-      border-top: 1px solid var(--border);
-    }
-    .hero-stat-num {
-      font-family: var(--font-head);
-      font-size: 2rem;
-      font-weight: 300;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .hero-stat-label {
-      font-size: .72rem;
-      color: var(--muted);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-top: 4px;
+      color: #B8854A;
     }
 
-    /* =========================================================
-       ABOUT
-    ========================================================= */
-    #about { background: var(--surface); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 80px;
-      align-items: start;
+    nav {
+      background: white;
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
     }
-    .about-sidebar {
-      position: sticky;
-      top: 80px;
-    }
-    .about-body p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      line-height: 1.9;
-      margin-bottom: 20px;
-    }
-    .about-body p:last-child { margin-bottom: 0; }
-    .about-highlight {
-      color: var(--text);
-      font-weight: 500;
+    nav .container {
+      display: flex;
+      justify-content: space-between;
     }
 
-    /* =========================================================
-       SKILLS
-    ========================================================= */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-    }
-    .skill-card { border-radius: var(--radius); }
-    .skill-card-head {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 24px;
-    }
-    .skill-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: var(--accent-lt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-    }
-    .skill-card-title {
-      font-family: var(--font-head);
-      font-size: 1.35rem;
-      font-weight: 600;
-    }
-    .skill-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: .9rem;
-      color: var(--muted);
-    }
-    .skill-list li:last-child { border-bottom: none; }
-    .skill-list li::before {
-      content: '';
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-    .skill-badge {
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    /* =========================================================
-       EXPERIENCE
-    ========================================================= */
-    #experience { background: var(--surface); }
-    .exp-timeline {
-      position: relative;
-      padding-left: 32px;
-    }
-    .exp-timeline::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 8px; bottom: 8px;
-      width: 1px;
-      background: var(--border);
-    }
-    .exp-item {
-      position: relative;
-      margin-bottom: 48px;
-    }
-    .exp-item:last-child { margin-bottom: 0; }
-    .exp-item::before {
-      content: '';
-      position: absolute;
-      left: -36px;
-      top: 6px;
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-      border: 2px solid var(--bg);
-      box-shadow: 0 0 0 2px var(--accent);
-    }
-    .exp-role {
-      font-family: var(--font-head);
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .exp-company {
-      font-size: .82rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-    .exp-desc {
-      font-size: .92rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* =========================================================
-       SERVICES
-    ========================================================= */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 24px;
-    }
-    .service-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 36px 28px;
-      transition: all .25s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .service-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .3s ease;
-    }
-    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-    .service-card:hover::after { transform: scaleX(1); }
-    .service-icon {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .service-title {
-      font-family: var(--font-head);
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .service-desc {
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* =========================================================
-       PORTFOLIO
-    ========================================================= */
-    #portfolio { background: var(--surface); }
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-    }
-    .portfolio-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-      transition: all .25s ease;
-    }
-    .portfolio-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.1); }
-    .portfolio-card-header {
-      background: linear-gradient(135deg, var(--accent-lt) 0%, var(--bg) 100%);
-      padding: 40px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-head);
-      font-size: 3rem;
-    }
-    .portfolio-card-body {
-      padding: 28px 28px 32px;
-    }
-    .portfolio-card-type {
-      font-size: .7rem;
-      font-weight: 500;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
-    }
-    .portfolio-card-title {
-      font-family: var(--font-head);
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-    .portfolio-card-desc {
-      font-size: .88rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* =========================================================
-       CONTACT
-    ========================================================= */
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .contact-cta-label { margin-bottom: 12px; }
-    .contact-cta-title {
-      font-family: var(--font-head);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 300;
-      line-height: 1.2;
-      margin-bottom: 24px;
-    }
-    .contact-cta-title em { color: var(--accent); font-style: italic; }
-    .contact-cta-text {
-      font-size: .95rem;
-      color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 36px;
-    }
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .contact-link-item {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      padding: 20px 24px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: all .25s ease;
-    }
-    .contact-link-item:hover {
-      border-color: var(--accent);
-      transform: translateX(4px);
-    }
-    .contact-link-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      background: var(--accent-lt);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .contact-link-label {
-      font-size: .72rem;
-      font-weight: 500;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 2px;
-    }
-    .contact-link-value {
-      font-size: .9rem;
-      font-weight: 500;
-      color: var(--text);
-    }
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-    footer {
-      background: var(--text);
-      color: rgba(255,255,255,.5);
+    .hero {
       text-align: center;
-      padding: 32px;
-      font-size: .8rem;
-      letter-spacing: .05em;
-    }
-    footer span { color: var(--accent); }
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-    @media (max-width: 768px) {
-      .section { padding: 64px 0; }
-      .hero-inner {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 40px;
-      }
-      .hero-eyebrow { justify-content: center; }
-      .hero-intro { margin-inline: auto; }
-      .btn-row { justify-content: center; }
-      .hero-visual { display: none; }
-      .hero-stats { justify-content: center; }
-      .about-grid { grid-template-columns: 1fr; gap: 32px; }
-      .about-sidebar { position: static; }
-      .contact-inner { grid-template-columns: 1fr; gap: 48px; }
-      .nav-links { display: none; }
-      .exp-timeline { padding-left: 20px; }
-      .exp-item::before { left: -24px; }
+      padding: 120px 0;
     }
 
-    /* =========================================================
-       ANIMATIONS
-    ========================================================= */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+    .contact-links {
+      margin-top: 30px;
     }
-    .hero-eyebrow  { animation: fadeUp .6s ease both; }
-    .hero-name     { animation: fadeUp .6s .1s ease both; }
-    .hero-title    { animation: fadeUp .6s .2s ease both; }
-    .hero-intro    { animation: fadeUp .6s .3s ease both; }
-    .btn-row       { animation: fadeUp .6s .4s ease both; }
-    .hero-stats    { animation: fadeUp .6s .5s ease both; }
-    .hero-visual   { animation: fadeUp .6s .3s ease both; }
+
+    .contact-link-item {
+      display: block;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #000;
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- ===================== NAV ===================== -->
-  <nav>
-    <div class="nav-inner">
-      <!-- ✏️ EDIT: Your initials or short name -->
-      <div class="nav-logo">B.<span>H</span></div>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Work</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div><strong>B.H</strong></div>
+    <div>
+      <a href="#contact">Contact</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- ===================== HERO ===================== -->
-  <section class="hero" id="home">
-    <div class="hero-inner">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <!-- ✏️ EDIT: Your profession label -->
-          <span>Arabic · French · English</span>
-        </div>
-        <!-- ✏️ EDIT: Your name -->
-        <h1 class="hero-name">
-          Bahami<strong>Hasnaa</strong>
-        </h1>
-        <!-- ✏️ EDIT: Your title -->
-        <p class="hero-title">Arabic Translator · Localization Specialist · AI Language Expert</p>
-        <!-- ✏️ EDIT: Your 2–3 line intro -->
-        <p class="hero-intro">
-          I am a trilingual language professional with hands-on experience in Arabic–French–English translation, 
-          localization, and AI language data annotation. I bridge linguistic precision with cutting-edge 
-          AI workflows to deliver quality that resonates across cultures.
-        </p>
-        <div class="btn-row">
-          <!-- ✏️ EDIT: href="#contact" links to the contact section; update the CV href to your actual file -->
-          <a href="#contact" class="btn btn-primary">Contact Me</a>
-          <a href="#" class="btn btn-outline">Download CV ↓</a>
-        </div>
-        <div class="hero-stats">
-          <!-- ✏️ EDIT: Your stats -->
-          <div>
-            <div class="hero-stat-num">3+</div>
-            <div class="hero-stat-label">Languages</div>
-          </div>
-          <div>
-            <div class="hero-stat-num">100%</div>
-            <div class="hero-stat-label">Quality Focus</div>
-          </div>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <!-- ✏️ EDIT: Change the monogram initials here -->
-        <div class="hero-monogram">
-          <div class="hero-monogram-initials">بح</div>
-          <div class="hero-monogram-lang">Hasnaa Bahami</div>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Bahami Hasnaa</h1>
+    <p>Arabic Translator · Localization Specialist · AI Language Expert</p>
+
+    <!-- ✅ FIXED EMAIL BUTTON -->
+    <a href="mailto:hasnaabahami314@gmail.com?subject=Project Inquiry&body=Hello Hasnaa,%0D%0A%0D%0AI would like to discuss a project with you." class="btn btn-primary">
+      Send an Email ✉️
+    </a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <h2>Contact Me</h2>
+
+    <div class="contact-links">
+      <a href="mailto:hasnaabahami314@gmail.com" class="contact-link-item">
+        📧 hasnaabahami314@gmail.com
+      </a>
+
+      <a href="https://www.linkedin.com/in/hasnae-bahami-a34980214" target="_blank" class="contact-link-item">
+        💼 LinkedIn Profile
+      </a>
+
+      <div class="contact-link-item">
+        📍 Casablanca, Morocco
       </div>
     </div>
-  </section>
-
-  <!-- ===================== ABOUT ===================== -->
-  <section class="section" id="about">
-    <div class="container">
-      <div class="about-grid">
-        <div class="about-sidebar">
-          <p class="section-label">About Me</p>
-          <h2 class="section-title">Language is <em>my craft</em></h2>
-          <span class="tag">Trilingual Professional</span>
-        </div>
-        <!-- ✏️ EDIT: Your about paragraphs -->
-        <div class="about-body">
-          <p>
-            I am <span class="about-highlight">Bahami Hasnaa</span>, a dedicated language professional 
-            specializing in Arabic–French–English translation, localization, and AI language data services. 
-            With a strong academic background in linguistics and applied translation, I bring both cultural 
-            sensitivity and technical precision to every project.
-          </p>
-          <p>
-            My experience spans <span class="about-highlight">literary and technical translation</span>, 
-            software and content localization, AI training data annotation, and quality evaluation of 
-            machine-generated content. I am equally comfortable working with industry-standard CAT tools 
-            as I am collaborating on cutting-edge AI language model improvement projects.
-          </p>
-          <p>
-            I thrive in fast-paced, detail-oriented environments where linguistic accuracy and 
-            <span class="about-highlight">cultural authenticity</span> are paramount. Whether you need 
-            a meticulous translator, a localization specialist, or an AI language evaluator, I deliver 
-            results that meet the highest professional standards.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SKILLS ===================== -->
-  <section class="section" id="skills">
-    <div class="container">
-      <p class="section-label">Expertise</p>
-      <h2 class="section-title">Skills &amp; <em>Tools</em></h2>
-      <div class="skills-grid">
-
-        <!-- ✏️ EDIT: Language skills -->
-        <div class="card skill-card">
-          <div class="skill-card-head">
-            <div class="skill-icon">🌐</div>
-            <div class="skill-card-title">Languages</div>
-          </div>
-          <ul class="skill-list">
-            <li><span class="skill-badge">Arabic</span> — Native</li>
-            <li><span class="skill-badge">French</span> — Native</li>
-            <li><span class="skill-badge">English</span> — Proficient (C1)</li>
-          </ul>
-        </div>
-
-        <!-- ✏️ EDIT: CAT & Translation tools -->
-        <div class="card skill-card">
-          <div class="skill-card-head">
-            <div class="skill-icon">🛠</div>
-            <div class="skill-card-title">CAT Tools</div>
-          </div>
-          <ul class="skill-list">
-            <li><span class="skill-badge">MemoQ</span></li>
-            <li><span class="skill-badge">SDL Trados Studio</span></li>
-            <li><span class="skill-badge">OmegaT</span></li>
-          </ul>
-        </div>
-
-        <!-- ✏️ EDIT: Productivity tools -->
-        <div class="card skill-card">
-          <div class="skill-card-head">
-            <div class="skill-icon">📋</div>
-            <div class="skill-card-title">Productivity</div>
-          </div>
-          <ul class="skill-list">
-            <li><span class="skill-badge">Google Workspace</span></li>
-            <li><span class="skill-badge">Microsoft Office</span></li>
-            <li><span class="skill-badge">Notion / Trello</span></li>
-          </ul>
-        </div>
-
-        <!-- ✏️ EDIT: AI & Annotation skills -->
-        <div class="card skill-card">
-          <div class="skill-card-head">
-            <div class="skill-icon">🤖</div>
-            <div class="skill-card-title">AI & Annotation</div>
-          </div>
-          <ul class="skill-list">
-            <li><span class="skill-badge">Data Annotation</span></li>
-            <li><span class="skill-badge">RLHF Evaluation</span></li>
-            <li><span class="skill-badge">LLM Content Review</span></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== EXPERIENCE ===================== -->
-  <section class="section" id="experience">
-    <div class="container">
-      <p class="section-label">Career</p>
-      <h2 class="section-title">Professional <em>Experience</em></h2>
-      <div class="exp-timeline">
-
-        <!-- ✏️ EDIT: Job 1 -->
-        <div class="exp-item">
-          <div class="exp-role">AI Data Annotator &amp; Language Expert</div>
-          <div class="exp-company">Freelance / Remote — AI Projects</div>
-          <p class="exp-desc">
-            Evaluated and annotated Arabic-language outputs from large language models to improve 
-            response quality, fluency, and cultural accuracy. Performed RLHF feedback tasks, 
-            content quality ranking, and linguistic validation for leading AI research organizations.
-          </p>
-        </div>
-
-        <!-- ✏️ EDIT: Job 2 -->
-        <div class="exp-item">
-          <div class="exp-role">Arabic–French–English Translator &amp; Localization Specialist</div>
-          <div class="exp-company">Freelance — Translation Agency Projects</div>
-          <p class="exp-desc">
-            Translated and localized technical, legal, marketing, and literary documents for 
-            international clients. Maintained consistency using CAT tools (MemoQ, SDL Trados Studio) 
-            and adhered to client-specific glossaries and style guides.
-          </p>
-        </div>
-
-        <!-- ✏️ EDIT: Job 3 -->
-        <div class="exp-item">
-          <div class="exp-role">Arabic Transcriptionist &amp; Content Reviewer</div>
-          <div class="exp-company">Remote — Digital Media Companies</div>
-          <p class="exp-desc">
-            Transcribed and reviewed Arabic audio and video content ensuring high accuracy and 
-            quality standards. Performed dialect identification, cultural review, and quality 
-            assurance on multilingual content pipelines.
-          </p>
-        </div>
-
-        <!-- ✏️ EDIT: Job 4 (optional — delete this block if not needed) -->
-        <div class="exp-item">
-          <div class="exp-role">Language Tutor — Arabic &amp; French</div>
-          <div class="exp-company">Private Tutoring — Online Platforms</div>
-          <p class="exp-desc">
-            Delivered personalized language lessons in Arabic and French to international students, 
-            focusing on grammar, reading comprehension, and conversational fluency, tailoring 
-            content to each learner's level and objectives.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SERVICES ===================== -->
-  <section class="section" id="services">
-    <div class="container">
-      <p class="section-label">What I Offer</p>
-      <h2 class="section-title">My <em>Services</em></h2>
-      <div class="services-grid">
-
-        <!-- ✏️ EDIT: Services — change icons, titles, descriptions -->
-        <div class="service-card">
-          <div class="service-icon">📝</div>
-          <div class="service-title">Translation</div>
-          <p class="service-desc">
-            Professional Arabic–French–English translation for legal, technical, medical, 
-            literary, and marketing documents with native-level accuracy.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🌍</div>
-          <div class="service-title">Localization</div>
-          <p class="service-desc">
-            Adapting digital content, software interfaces, and marketing materials for 
-            Arabic-speaking audiences while preserving cultural context and brand voice.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🎙</div>
-          <div class="service-title">Transcription</div>
-          <p class="service-desc">
-            Accurate transcription of Arabic and French audio or video content for media, 
-            research, legal proceedings, and accessibility purposes.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🤖</div>
-          <div class="service-title">AI Content Evaluation</div>
-          <p class="service-desc">
-            Expert evaluation and quality assessment of AI-generated Arabic content for 
-            fluency, cultural appropriateness, factual accuracy, and coherence.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">🏷</div>
-          <div class="service-title">Data Annotation</div>
-          <p class="service-desc">
-            Text labeling, entity tagging, sentiment analysis, and RLHF feedback for 
-            Arabic NLP and AI training datasets.
-          </p>
-        </div>
-
-        <div class="service-card">
-          <div class="service-icon">📊</div>
-          <div class="service-title">AI Language Training</div>
-          <p class="service-desc">
-            Contributing high-quality Arabic language data to improve large language models, 
-            including prompt creation, response ranking, and linguistic benchmarking.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== PORTFOLIO ===================== -->
-  <section class="section" id="portfolio">
-    <div class="container">
-      <p class="section-label">Work Samples</p>
-      <h2 class="section-title">Selected <em>Projects</em></h2>
-      <div class="portfolio-grid">
-
-        <!-- ✏️ EDIT: Project 1 -->
-        <div class="portfolio-card">
-          <div class="portfolio-card-header">📄</div>
-          <div class="portfolio-card-body">
-            <div class="portfolio-card-type">Technical Translation</div>
-            <div class="portfolio-card-title">Legal Contract Localization</div>
-            <p class="portfolio-card-desc">
-              Full translation and localization of a 40-page French legal contract into 
-              Modern Standard Arabic for a North African corporate client. Maintained 
-              terminological precision using legal glossaries and SDL Trados Studio.
-            </p>
-          </div>
-        </div>
-
-        <!-- ✏️ EDIT: Project 2 -->
-        <div class="portfolio-card">
-          <div class="portfolio-card-header">🤖</div>
-          <div class="portfolio-card-body">
-            <div class="portfolio-card-type">AI Data Annotation</div>
-            <div class="portfolio-card-title">Arabic LLM Quality Evaluation</div>
-            <p class="portfolio-card-desc">
-              Evaluated 500+ Arabic response pairs generated by a major language model. 
-              Provided structured RLHF ranking feedback focusing on fluency, 
-              dialect neutrality, and cultural appropriateness.
-            </p>
-          </div>
-        </div>
-
-        <!-- ✏️ EDIT: Project 3 -->
-        <div class="portfolio-card">
-          <div class="portfolio-card-header">🌐</div>
-          <div class="portfolio-card-body">
-            <div class="portfolio-card-type">Software Localization</div>
-            <div class="portfolio-card-title">E-commerce Platform — Arabic UI</div>
-            <p class="portfolio-card-desc">
-              Localized the full UI and UX copy of an e-commerce platform from English 
-              to Arabic, including RTL layout review, cultural adaptation of idioms, 
-              and consistency checks via MemoQ translation memories.
-            </p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== CONTACT ===================== -->
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="contact-inner">
-        <div>
-          <p class="section-label contact-cta-label">Get In Touch</p>
-          <h2 class="contact-cta-title">Let's work <em>together</em></h2>
-          <p class="contact-cta-text">
-            Whether you have a translation project, need an AI language expert, or simply want 
-            to discuss collaboration opportunities, I'd love to hear from you.
-          </p>
-          <a href="https://mail.google.com/mail/?view=cm&to=hasnaabahami314@gmail.com" target="_blank" rel="noopener" class="btn btn-primary">Send an Email ✉️</a>
-        </div>
-
-        <div class="contact-links">
-          <!-- ✏️ EDIT: Your email -->
-          <a href="mailto:hasnaabahami314@gmail.com" class="contact-link-item">
-            <div class="contact-link-icon">✉️</div>
-            <div>
-              <div class="contact-link-label">Email</div>
-              <div class="contact-link-value">hasnaabahami314@gmail.com</div>
-            </div>
-          </a>
-          <!-- ✏️ EDIT: Your LinkedIn URL -->
-          <a href="https://www.linkedin.com/in/hasnae-bahami-a34980214" target="_blank" rel="noopener" class="contact-link-item">
-            <div class="contact-link-icon">💼</div>
-            <div>
-              <div class="contact-link-label">LinkedIn</div>
-              <div class="contact-link-value">hasnae-bahami</div>
-            </div>
-          </a>
-          <!-- ✏️ EDIT: Add or remove extra contacts (e.g. WhatsApp, Twitter) -->
-          <div class="contact-link-item" style="opacity:.5; cursor:default;">
-            <div class="contact-link-icon">📍</div>
-            <div>
-              <div class="contact-link-label">Location</div>
-              <!-- ✏️ EDIT: Your city/country -->
-              <div class="contact-link-value">Casablanca, Morocco</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FOOTER ===================== -->
-  <footer>
-    <!-- ✏️ EDIT: Your name in the footer -->
-    &copy; 2025 <span>Bahami Hasnaa</span>. All rights reserved. · Arabic Translator &amp; AI Language Expert
-  </footer>
+  </div>
+</section>
 
 </body>
 </html>
